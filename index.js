@@ -18,8 +18,6 @@ const bufferStream = (limit, options = {}) => {
 
   return (error, callback) => {
     if (error) {
-      console.info('how did I get here?', error)
-
       return callback(error)
     }
 
