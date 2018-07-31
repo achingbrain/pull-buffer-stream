@@ -1,0 +1,18 @@
+{
+  "name": "pull-buffer-stream",
+  "version": "0.0.0",
+  "description": "Emits streams of buffers",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --check-coverage --lines 100 --reporter html ava",
+    "lint": "standard"
+  },
+  "author": "Alex Potsides <alex@achingbrain.net>",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "nyc": "^12.0.2",
+    "pull-stream": "^3.6.8",
+    "standard": "^11.0.1"
+  }
+}
