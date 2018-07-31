@@ -14,7 +14,9 @@
     "ava": "^0.25.0",
     "coveralls": "^3.0.2",
     "nyc": "^12.0.2",
-    "pull-stream": "^3.6.8",
     "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "pull-stream": "^3.6.8"
   }
 }

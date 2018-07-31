@@ -1,6 +1,9 @@
 'use strict'
 
 const crypto = require('crypto')
+const pull = require('pull-stream/pull')
+const values = require('pull-stream/sources/values')
+const asyncMap = require('pull-stream/throughs/async-map')
 
 const defaultOptions = {
   chunkSize: 4096,
@@ -16,33 +19,34 @@ const bufferStream = (limit, options = {}) => {
   options = Object.assign({}, defaultOptions, options)
   let emitted = 0
 
-  return (error, callback) => {
-    if (error) {
-      return callback(error)
-    }
+  const arr = []
+  arr.length = Math.ceil(limit / options.chunkSize)
 
-    const nextLength = emitted + options.chunkSize
-    let nextChunkSize = options.chunkSize
+  return pull(
+    values(arr),
+    asyncMap((_, callback) => {
+      const nextLength = emitted + options.chunkSize
+      let nextChunkSize = options.chunkSize
 
-    if (nextLength > limit) {
-      // emit the final chunk
-      nextChunkSize = limit - emitted
-    }
-
-    if (nextChunkSize < 1) {
-      // we've emitted all requested data, end the stream
-      return callback(true) // eslint-disable-line standard/no-callback-literal
-    }
-
-    options.generator(nextChunkSize, (error, bytes) => {
-      if (!error) {
-        options.collector(bytes)
-        emitted += nextChunkSize
+      if (nextLength > limit) {
+        // emit the final chunk
+        nextChunkSize = limit - emitted
       }
 
-      callback(error, bytes)
+      options.generator(nextChunkSize, (error, bytes) => {
+        if (error) {
+          return callback(error)
+        }
+
+        bytes = bytes.slice(0, nextChunkSize)
+
+        options.collector(bytes)
+        emitted += nextChunkSize
+
+        callback(null, bytes)
+      })
     })
-  }
+  )
 }
 
 module.exports = bufferStream
