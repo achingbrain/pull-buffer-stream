@@ -18,16 +18,23 @@ const bufferStream = require('pull-buffer-stream')
 
 const totalLength = //... a big number
 
+// all options are optional, defaults are shown
+const options = {
+  chunkSize: 4096, // how many bytes will be in each buffer
+  collector: (buffer) => {
+    // will be called as each buffer is generated. the final buffer
+    // may be smaller than `chunkSize`
+  },
+  generator: (size, callback) => {
+    // generate a buffer of length `size` and pass it to the callback in
+    // the `callback(error, buffer)` style
+    //
+    // if omitted, `crypto.randomBytes(size)` will be used
+  }
+}
+
 pull(
-  bufferStream(totalLength, {
-    chunkSize: 4096, // how many bytes will be in each buffer
-    collector: (buffer) => {
-      // will be called as each buffer is generated
-    },
-    generator: (size, callback) => {
-      // generate some bytes and pass them to callback in the `callback(error, bytes)` style
-    }
-  }),
+  bufferStream(totalLength, options),
   pull.collect((error, buffers) => {
     // `buffers` is an array of Buffers the combined length of which === totalLength
   })
