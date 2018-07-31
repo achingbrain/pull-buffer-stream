@@ -1,6 +1,6 @@
 # pull-buffer-stream
 
-[![Build status](https://travis-ci.org/achingbrain/pull-buffer-stream.svg?branch=master)](https://travis-ci.org/achingbrain/pull-buffer-stream.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/achingbrain/pull-buffer-stream/badge.svg?branch=master)](https://coveralls.io/github/achingbrain/pull-buffer-stream?branch=master) [![Dependencies Status](https://david-dm.org/achingbrain/pull-buffer-stream/status.svg)](https://david-dm.org/achingbrain/pull-buffer-stream)
+[![Build status](https://travis-ci.org/achingbrain/pull-buffer-stream.svg?branch=master)](https://travis-ci.org/achingbrain/pull-buffer-stream?branch=master) [![Coverage Status](https://coveralls.io/repos/github/achingbrain/pull-buffer-stream/badge.svg?branch=master)](https://coveralls.io/github/achingbrain/pull-buffer-stream?branch=master) [![Dependencies Status](https://david-dm.org/achingbrain/pull-buffer-stream/status.svg)](https://david-dm.org/achingbrain/pull-buffer-stream)
 
 > Emits streams of buffers
 
