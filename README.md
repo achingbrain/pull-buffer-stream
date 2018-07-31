@@ -2,13 +2,13 @@
 
 > Emits streams of buffers
 
-## Install
+## Install
 
 ```sh
 $ npm install --save pull-buffer-stream
 ```
 
-## Usage
+## Usage
 
 Generate streams of buffers containing bytes up to a certain length:
 
