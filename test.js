@@ -2,7 +2,6 @@ import bufferStream from './'
 import test from 'ava'
 import pull, {
   collect,
-  once,
   map
 } from 'pull-stream'
 
