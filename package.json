@@ -1,6 +1,6 @@
 {
   "name": "pull-buffer-stream",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Emits streams of buffers",
   "main": "index.js",
   "scripts": {
